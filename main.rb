@@ -14,6 +14,54 @@ def display_menu
   puts '10. Quit'
 end
 
+def create_book
+  puts 'creating a book'
+end
+
+def create_music_album
+  puts 'creating a music album'
+end
+
+def create_movie
+  puts 'creating a movie'
+end
+
+def create_game
+  puts 'creating a game'
+end
+
+def list_books
+  puts 'listing all books'
+end
+
+def list_music_albums
+  puts 'listing all music albums'
+end
+
+def list_movies
+  puts 'listing all movies'
+end
+
+def list_games
+  puts 'listing all games'
+end
+
+def list_genres
+  puts 'listing all genres'
+end
+
+def list_labels
+  puts 'listing all labels'
+end
+
+def list_authors
+  puts 'listing all authors'
+end
+
+def list_sources
+  puts 'listing all sources'
+end
+
 def create_item
   puts 'Enter (1) for Book (2) for MusicAlbum (3) for Game :'
   num = gets.chomp.to_i
@@ -24,6 +72,8 @@ def create_item
     create_music_album
   when 3
     create_game
+  when 4
+    create_movie
   else
     puts 'Error'
   end
