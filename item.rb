@@ -38,9 +38,10 @@ class Item
   end
 
   def parse_date(date_str)
-    Date.parse(date_str)
+    Date.parse(date_str.to_s)
   rescue ArgumentError, TypeError
-    raise ArgumentError, 'Invalid publish date format'
+    raise ArgumentError, 'Invalid publish date format. Please use the format YYYY-MM-DD.'
   end
+
   private :can_be_archived?, :parse_date
 end
