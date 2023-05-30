@@ -34,15 +34,6 @@ class App
       return
     end
 
-    print 'What is the source of the album: '
-    source = gets.chomp
-
-    print 'What is the label title the album is under: '
-    label_title = gets.chomp
-
-    # print 'Label studio: '
-    # studio = gets.chomp
-
     print 'Select the genre of the album: '
     genre = gets.chomp
 
@@ -101,4 +92,3 @@ class App
     save_data(self)
   end
 end
-
