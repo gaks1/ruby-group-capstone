@@ -39,6 +39,7 @@ class Item
   end
 
   def parse_date(date_str)
+    return date_str if date_str.is_a?(Date)
     Date.parse(date_str)
   rescue ArgumentError, TypeError
     raise ArgumentError, 'Invalid publish date format'

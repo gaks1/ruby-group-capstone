@@ -36,13 +36,7 @@ class App
 
     cover_state = ask_cover_state('Add the cover state for the book (1) good (2) bad')
     publisher = ask_user('Add the publisher for the book')
-    publish_date_input = ask_user('Add the publish date for the book. Please use the format YYYY-MM-DD')
-    begin
-      publish_date = date_checker(publish_date_input)
-    rescue ArgumentError, TypeError
-      puts 'Invalid publish date format. Please use the format YYYY-MM-DD.'
-      return
-    end
+    publish_date = ask_publish_date('Add the publish date for the book. Please use the format YYYY-MM-DD.')
     book = Book.new(cover_state, publisher, publish_date)
     book.label = label
     @books << book
@@ -65,8 +59,15 @@ class App
     end
   end
 
-  def date_checker(publish_date_input)
-    Date.parse(publish_date_input.to_s)
+  def ask_publish_date(prompt)
+    puts prompt
+    publish_date = gets.chomp
+    begin
+      Date.parse(publish_date)
+    rescue ArgumentError
+      puts 'Invalid date format. Please use the format YYYY-MM-DD.'
+      retry
+    end
   end
 
   def list_books
@@ -127,3 +128,6 @@ class App
     puts 'listing all sources'
   end
 end
+
+# a = App.new
+# a.ask_publish_date("Add date")
