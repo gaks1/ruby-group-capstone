@@ -19,8 +19,13 @@ class App
 
     cover_state = ask_user('Add the cover state for the book (1) good (2) bad').to_i == 1 ? 'good' : 'bad'
     publisher = ask_user('Add the publisher for the book')
-    publish_date = ask_user('Add the publish date for the book')
-
+    publish_date_input = ask_user('Add the publish date for the book. Please use the format YYYY-MM-DD')
+    begin
+      publish_date = date_checker(publish_date_input)
+    rescue ArgumentError, TypeError
+      puts 'Invalid publish date format. Please use the format YYYY-MM-DD.'
+      return
+    end
     book = Book.new(cover_state, publisher, publish_date)
     book.label = label
     @books << book
@@ -32,6 +37,10 @@ class App
     gets.chomp
   end
 
+  def date_checker(publish_date_input)
+    Date.parse(publish_date_input.to_s)
+  end
+
   def list_books
     puts 'listing all books'
     @books.each do |book|
@@ -39,7 +48,7 @@ class App
     end
   end
 
-  def save_session
+  def save_session_and_exit
     puts 'saving session'
     DataSaver.save_book(@books)
     DataSaver.save_labels(@labels)
