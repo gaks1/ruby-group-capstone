@@ -10,6 +10,23 @@ class App
     @books = DataLoader.read_books(@labels)
   end
 
+  def create_item
+    puts 'Enter (1) for Book (2) for MusicAlbum (3) for Game :'
+    num = gets.chomp.to_i
+    case num
+    when 1
+      create_book
+    when 2
+      create_music_album
+    when 3
+      create_game
+    when 4
+      create_movie
+    else
+      puts 'Error'
+    end
+  end
+
   def create_book
     title = ask_user('Add a label title')
     color = ask_user('Add a color for the label')
@@ -17,7 +34,7 @@ class App
     @labels << label
     puts 'label created successfully'
 
-    cover_state = ask_user('Add the cover state for the book (1) good (2) bad').to_i == 1 ? 'good' : 'bad'
+    cover_state = ask_cover_state('Add the cover state for the book (1) good (2) bad')
     publisher = ask_user('Add the publisher for the book')
     publish_date_input = ask_user('Add the publish date for the book. Please use the format YYYY-MM-DD')
     begin
@@ -37,6 +54,17 @@ class App
     gets.chomp
   end
 
+  def ask_cover_state(prompt)
+    puts prompt
+    cover_state = gets.chomp.to_i
+    if [1, 2].include?(cover_state)
+      cover_state == 1 ? 'good' : 'bad'
+    else
+      puts 'Invalid cover state. Please use good or bad.'
+      ask_cover_state(prompt)
+    end
+  end
+
   def date_checker(publish_date_input)
     Date.parse(publish_date_input.to_s)
   end
@@ -52,6 +80,8 @@ class App
     puts 'saving session'
     DataSaver.save_book(@books)
     DataSaver.save_labels(@labels)
+    puts 'exiting...'
+    exit
   end
 
   def list_labels
@@ -59,5 +89,41 @@ class App
     @labels.each do |label|
       puts "Title: #{label.title} Color: #{label.color}"
     end
+  end
+
+  def create_music_album
+    puts 'creating a music album'
+  end
+
+  def create_movie
+    puts 'creating a movie'
+  end
+
+  def create_game
+    puts 'creating a game'
+  end
+
+  def list_music_albums
+    puts 'listing all music albums'
+  end
+
+  def list_movies
+    puts 'listing all movies'
+  end
+
+  def list_games
+    puts 'listing all games'
+  end
+
+  def list_genres
+    puts 'listing all genres'
+  end
+
+  def list_authors
+    puts 'listing all authors'
+  end
+
+  def list_sources
+    puts 'listing all sources'
   end
 end
