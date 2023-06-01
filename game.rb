@@ -1,16 +1,18 @@
 require './item'
+require 'date'
 
 class Game < Item
   attr_accessor :platform, :last_played_at
 
-  def initialize(name, platform, last_played_at)
-    super(name)
+  def initialize(publish_date, last_played_at = Time.now.strftime('%d/%m/%Y'), platform = 'false', archived = 'false')
+    super(publish_date, archived: archived)
     @platform = platform
     @last_played_at = last_played_at
   end
 
+  private
+
   def can_be_archived?
-    parent = super
-    (parent && (Time.now - last_played_at) > (2 * 365 * 24 * 60 * 60))
+    super && (Date.today.year - Date.parse(@last_played_at).year) > 2
   end
 end
