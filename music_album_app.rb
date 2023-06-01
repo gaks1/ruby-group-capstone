@@ -3,7 +3,7 @@ require './genre'
 require './data'
 require './retrieve_data'
 
-class App
+class MusicApp
   attr_accessor :genres, :sources, :labels, :authors, :books, :movies,
                 :music_albums, :games
 
