@@ -8,13 +8,13 @@ class MusicApp
                 :music_albums, :games
 
   def initialize
-    self.genres = []
+    self.genres = retrieve_genres
     self.sources = []
     self.labels = []
     self.authors = []
     self.books = []
     self.movies = []
-    self.music_albums = []
+    self.music_albums = retrieve_albums
     self.games = []
     @exit = false
   end
@@ -57,36 +57,16 @@ class MusicApp
     end
   end
 
-  def display_options
-    options = %w[
-      add_album list_albums list_genres
-      exit
-    ]
-
-    options.each_with_index do |option, ind|
-      puts "#{ind + 1}: #{option}"
-    end
-  end
-
-  def leave
-    @exit = true
-  end
-
-  def execute(choice)
-    return add_music_album if choice == 1
-    return list_albums if choice == 2
-    return list_genres if choice == 3
-    return leave if choice == 4
-
-    puts 'Invalid choice'
-  end
-
-  def final
-    retrieve_data(self)
-    while @exit == false
-      display_options
-      execute(gets.chomp.to_i)
-    end
+  def music_save
     save_data(self)
   end
+
+  # def final
+  #   retrieve_data(self)
+  #   while @exit == false
+  #     display_options
+  #     execute(gets.chomp.to_i)
+  #   end
+  #   save_data(self)
+  # end
 end

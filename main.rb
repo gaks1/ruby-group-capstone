@@ -26,6 +26,7 @@ class Main
 
   def save_session_and_exit
     @book_app.book_save
+    @music_app.music_save
     puts 'saving'
   end
 

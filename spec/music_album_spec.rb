@@ -2,7 +2,7 @@ require_relative '../music_album'
 
 describe MusicAlbum do
   before :each do
-    @music_album = MusicAlbum.new(true, '2010-01-02')
+    @music_album = MusicAlbum.new(true, Date.parse('2010-01-02'))
   end
 
   context 'When testing the MusicAlbum class' do
