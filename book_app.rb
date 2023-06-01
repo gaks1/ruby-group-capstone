@@ -4,27 +4,10 @@ require_relative 'book'
 require_relative 'book_data_saver'
 require_relative 'book_data_loader'
 
-class App
+class BookApp
   def initialize
     @labels = DataLoader.read_labels
     @books = DataLoader.read_books(@labels)
-  end
-
-  def create_item
-    puts 'Enter (1) for Book (2) for MusicAlbum (3) for Game :'
-    num = gets.chomp.to_i
-    case num
-    when 1
-      create_book
-    when 2
-      create_music_album
-    when 3
-      create_game
-    when 4
-      create_movie
-    else
-      puts 'Error'
-    end
   end
 
   def create_book
