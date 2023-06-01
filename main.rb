@@ -21,23 +21,22 @@ class Main
     puts '12. List all sources '
     puts '13. Quit'
   end
-  
+
   def main(options)
     loop do
       display_menu
       print 'Choose an option: '
       option = gets.chomp.to_i
-  
+
       if options.key?(option)
         @book_app.send(options[option])
       else
         puts 'Invalid option. Please try again.'
       end
-  
+
       puts '---------------------'
     end
   end
-
 end
 
 options = {
@@ -58,4 +57,3 @@ options = {
 
 main = Main.new
 main.main(options)
-
