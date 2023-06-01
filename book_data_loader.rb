@@ -6,9 +6,9 @@ require_relative 'item'
 class DataLoader
   # load data from books json file
   def self.read_labels
-    return [] unless File.exist?('labels.json')
+    return [] unless File.exist?('./storage/labels.json')
 
-    file = File.open('labels.json')
+    file = File.open('./storage/labels.json')
     new_labels = File.read(file)
     json_labels = JSON.parse(new_labels)
     load_labels = []
@@ -21,9 +21,9 @@ class DataLoader
   end
 
   def self.read_books(labels)
-    return [] unless File.exist?('books.json')
+    return [] unless File.exist?('./storage/books.json')
 
-    file = File.open('books.json')
+    file = File.open('./storage/books.json')
     new_books = File.read(file)
     json_books = JSON.parse(new_books)
     load_books = []
