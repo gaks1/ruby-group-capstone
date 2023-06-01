@@ -1,6 +1,6 @@
 require './music_album'
 require './genre'
-require './data'
+require './music_album_data'
 require './retrieve_data'
 
 class MusicApp

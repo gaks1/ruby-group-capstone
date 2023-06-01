@@ -1,8 +1,11 @@
 require_relative 'book_app'
+require_relative 'music_album_app'
+
 
 class Main
   def initialize
     @book_app = BookApp.new
+    @music_app = MusicApp.new
   end
 
   def display_menu
@@ -22,16 +25,28 @@ class Main
     puts '13. Quit'
   end
 
+  def save_session_and_exit
+    @book_app.book_save
+    puts 'saving'
+  end
+
   def main(options)
     loop do
       display_menu
       print 'Choose an option: '
       option = gets.chomp.to_i
 
-      if options.key?(option)
+      if option == 13
+        puts 'saving session'
+        save_session_and_exit()
+        puts 'exiting...'
+        exit
+      elsif [1,3,4,5,7,8,10,11,12].include?(option)
         @book_app.send(options[option])
+      elsif [2,6,9]
+        @music_app.send(options[option])
       else
-        puts 'Invalid option. Please try again.'
+        puts 'Invalid option'
       end
 
       puts '---------------------'
@@ -41,18 +56,17 @@ end
 
 options = {
   1 => :create_book,
-  2 => :create_music_album,
+  2 => :add_music_album,
   3 => :create_movie,
   4 => :create_game,
   5 => :list_books,
-  6 => :list_music_albums,
+  6 => :list_albums,
   7 => :list_movies,
   8 => :list_games,
   9 => :list_genres,
   10 => :list_labels,
   11 => :list_authors,
   12 => :list_sources,
-  13 => :save_session_and_exit
 }
 
 main = Main.new

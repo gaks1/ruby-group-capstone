@@ -62,12 +62,9 @@ class BookApp
     end
   end
 
-  def save_session_and_exit
-    puts 'saving session'
+  def book_save
     DataSaver.save_book(@books)
     DataSaver.save_labels(@labels)
-    puts 'exiting...'
-    exit
   end
 
   def list_labels
@@ -77,32 +74,20 @@ class BookApp
     end
   end
 
-  def create_music_album
-    puts 'creating a music album'
-  end
-
   def create_movie
-    puts 'creating a movie'
+    puts 'No movie can be created now. Apologies'
   end
 
   def create_game
-    puts 'creating a game'
-  end
-
-  def list_music_albums
-    puts 'listing all music albums'
+    puts 'create game'
   end
 
   def list_movies
-    puts 'listing all movies'
+    puts 'No movie can be listed now. Apologies'
   end
 
   def list_games
     puts 'listing all games'
-  end
-
-  def list_genres
-    puts 'listing all genres'
   end
 
   def list_authors
@@ -110,9 +95,6 @@ class BookApp
   end
 
   def list_sources
-    puts 'listing all sources'
+    puts 'No sources can be listed now. Apologies'
   end
 end
-
-# a = App.new
-# a.ask_publish_date("Add date")
