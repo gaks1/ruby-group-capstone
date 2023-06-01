@@ -25,7 +25,8 @@ describe Label do
 
   describe '#add_item' do
     it 'adds an item to the label' do
-      item = Item.new('2021-10-10')
+      Label.new('Test', 'color')
+      item = Item.new(Date.parse('2010-10-10'))
       @label.add_item(item)
       expect(@label.items).to include(item)
     end

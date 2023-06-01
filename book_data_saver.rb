@@ -18,7 +18,7 @@ class DataSaver
       }
     end
     json_books = JSON.generate(new_books)
-    File.write('./books.json', json_books)
+    File.write('./storage/books.json', json_books)
   end
 
   def self.save_labels(labels)
@@ -26,6 +26,6 @@ class DataSaver
       { title: label.title, color: label.color, index: index }
     end
     json_labels = JSON.generate(new_labels)
-    File.write('./labels.json', json_labels)
+    File.write('./storage/labels.json', json_labels)
   end
 end
