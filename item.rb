@@ -6,7 +6,7 @@ class Item
 
   def initialize(publish_date)
     @id = rand(1..9999)
-    @publish_date = parse_date(publish_date)
+    @publish_date = publish_date
     @archived = can_be_archived?
   end
 
@@ -37,13 +37,5 @@ class Item
   def move_to_archive
     @archived = true if can_be_archived? == true
   end
-
-  def parse_date(date_str)
-    return date_str if date_str.is_a?(Date)
-
-    Date.parse(date_str)
-  rescue ArgumentError, TypeError
-    raise ArgumentError, 'Invalid publish date format'
-  end
-  private :can_be_archived?, :parse_date
+  private :can_be_archived?
 end

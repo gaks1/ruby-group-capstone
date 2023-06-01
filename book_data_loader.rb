@@ -28,7 +28,7 @@ class DataLoader
     json_books = JSON.parse(new_books)
     load_books = []
     json_books.each do |book|
-      new_book = Book.new(book['cover_state'], book['publisher'], book['publish_date'])
+      new_book = Book.new(book['cover_state'], book['publisher'], Date.parse(book['publish_date']))
       new_book.id = book['id']
       new_book.archived = book['archived']
       new_book.label = labels[book['index']]

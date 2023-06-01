@@ -54,10 +54,12 @@ class App
     if [1, 2].include?(cover_state)
       cover_state == 1 ? 'good' : 'bad'
     else
-      puts 'Invalid cover state. Please use good or bad.'
+      puts 'Invalid cover state.'
       ask_cover_state(prompt)
     end
   end
+
+  require 'date'
 
   def ask_publish_date(prompt)
     puts prompt
@@ -66,7 +68,7 @@ class App
       Date.parse(publish_date)
     rescue ArgumentError
       puts 'Invalid date format. Please use the format YYYY-MM-DD.'
-      retry
+      ask_publish_date(prompt)
     end
   end
 
