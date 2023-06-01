@@ -1,113 +1,59 @@
-require_relative 'item'
+require_relative 'book_app'
 
-def display_menu
-  puts 'Options:'
-  puts '1. Create new item'
-  puts '2. List all books'
-  puts '3. List all music albums'
-  puts '4. List all movies'
-  puts '5. List of games'
-  puts '6. List all genres'
-  puts '7. List all labels'
-  puts '8. List all authors'
-  puts '9. List all sources '
-  puts '10. Quit'
-end
+class Main
+  def initialize
+    @book_app = BookApp.new
+  end
 
-def create_book
-  puts 'creating a book'
-end
+  def display_menu
+    puts 'Options:'
+    puts '1. Create new book'
+    puts '2. Create new music album'
+    puts '3. Create new movie'
+    puts '4. Create new game'
+    puts '5. List all books'
+    puts '6. List all music albums'
+    puts '7. List all movies'
+    puts '8. List of games'
+    puts '9. List all genres'
+    puts '10. List all labels'
+    puts '11. List all authors'
+    puts '12. List all sources '
+    puts '13. Quit'
+  end
 
-def create_music_album
-  puts 'creating a music album'
-end
+  def main(options)
+    loop do
+      display_menu
+      print 'Choose an option: '
+      option = gets.chomp.to_i
 
-def create_movie
-  puts 'creating a movie'
-end
+      if options.key?(option)
+        @book_app.send(options[option])
+      else
+        puts 'Invalid option. Please try again.'
+      end
 
-def create_game
-  puts 'creating a game'
-end
-
-def list_books
-  puts 'listing all books'
-end
-
-def list_music_albums
-  puts 'listing all music albums'
-end
-
-def list_movies
-  puts 'listing all movies'
-end
-
-def list_games
-  puts 'listing all games'
-end
-
-def list_genres
-  puts 'listing all genres'
-end
-
-def list_labels
-  puts 'listing all labels'
-end
-
-def list_authors
-  puts 'listing all authors'
-end
-
-def list_sources
-  puts 'listing all sources'
-end
-
-def create_item
-  puts 'Enter (1) for Book (2) for MusicAlbum (3) for Game :'
-  num = gets.chomp.to_i
-  case num
-  when 1
-    create_book
-  when 2
-    create_music_album
-  when 3
-    create_game
-  when 4
-    create_movie
-  else
-    puts 'Error'
+      puts '---------------------'
+    end
   end
 end
 
-loop do
-  display_menu
-  print 'Choose an option: '
-  option = gets.chomp.to_i
+options = {
+  1 => :create_book,
+  2 => :create_music_album,
+  3 => :create_movie,
+  4 => :create_game,
+  5 => :list_books,
+  6 => :list_music_albums,
+  7 => :list_movies,
+  8 => :list_games,
+  9 => :list_genres,
+  10 => :list_labels,
+  11 => :list_authors,
+  12 => :list_sources,
+  13 => :save_session_and_exit
+}
 
-  case option
-  when 1
-    create_item
-  when 2
-    list_books
-  when 3
-    list_music_albums
-  when 4
-    list_movies
-  when 5
-    list_games
-  when 6
-    list_genres
-  when 7
-    list_labels
-  when 8
-    list_authors
-  when 9
-    list_sources
-  when 10
-    break
-  else
-    puts 'Invalid option. Please try again.'
-  end
-
-  puts '---------------------'
-end
+main = Main.new
+main.main(options)
