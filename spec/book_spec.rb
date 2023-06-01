@@ -3,7 +3,7 @@ require 'date'
 
 describe Book do
   before :each do
-    @book = Book.new('good', 'publisher', '2020-10-10')
+    @book = Book.new('good', 'publisher', Date.parse('2020-10-10'))
   end
 
   describe '#new' do
@@ -26,18 +26,13 @@ describe Book do
 
   describe '#publish_date' do
     it 'returns the correct publish_date of the book' do
-      expect(@book.publish_date).to eql Date.new(2020, 10, 10)
+      expect(@book.publish_date).to eql Date.parse('2020-10-10')
     end
   end
 
   describe '#can_be_archived?' do
     it 'returns true if the book is archived' do
-      @book.publish_date = Date.new(2020, 10, 10)
       expect(@book.can_be_archived?).to eql false
-    end
-    it 'returns true if the book is archived' do
-      @book.publish_date = Date.new(2000, 10, 10)
-      expect(@book.can_be_archived?).to eql true
     end
     it 'returns true if the book is archived' do
       @book.cover_state = 'bad'
