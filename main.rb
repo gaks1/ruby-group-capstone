@@ -3,7 +3,6 @@ require_relative 'book_app'
 class Main
   def initialize
     @book_app = BookApp.new
-    @music_app = MusicApp.new
   end
 
   def display_menu
