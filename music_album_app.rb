@@ -40,8 +40,6 @@ class App
     puts "Music album created successfully.\n\n"
 
     music_albums << MusicAlbum.new(on_spotify, publish_date)
-    # sources << Source.new(source)
-    # labels << Label.new(label_title, studio)
     genres << Genre.new(genre)
   end
 
