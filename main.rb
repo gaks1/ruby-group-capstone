@@ -41,7 +41,7 @@ class Main
 
       if option == 13
         puts 'saving session'
-        save_session_and_exit
+        @game_app.save_session_and_exit
         puts 'exiting...'
         exit
       elsif [1, 3, 4, 5, 7, 8, 10, 11, 12].include?(option)

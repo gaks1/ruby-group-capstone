@@ -54,14 +54,26 @@ class GameApp
   end
 
   def add_game(publish_date, multiplayer, last_played)
-    if @authors.empty?
+    if authors.empty?
       puts 'No authors found. Please add an author first.'
       add_author(publish_date, multiplayer, last_played)
     else
-      display_authors
-      puts 'Press the number to select the author.'
-      sel_option = gets.chomp.to_i
-      create_game_with_author(sel_option, publish_date, multiplayer, last_played)
+      puts 'Select an option:'
+      puts '1. Choose an existing author'
+      puts '2. Add a new author'
+      option = gets.chomp.to_i
+
+      case option
+      when 1
+        display_authors
+        puts 'Press the number to select the author.'
+        sel_option = gets.chomp.to_i
+        create_game_with_author(sel_option, publish_date, multiplayer, last_played)
+      when 2
+        add_author(publish_date, multiplayer, last_played)
+      else
+        puts 'Invalid option'
+      end
     end
   end
 
@@ -107,9 +119,8 @@ class GameApp
   end
 
   def save_session_and_exit
-    DataSaver.sav_games(games)
+    DataSaver.save_games(games)
     DataSaver.save_authors(authors)
-    exit
   end
 
   private

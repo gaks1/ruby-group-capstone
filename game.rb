@@ -7,7 +7,7 @@ class Game < Item
   def initialize(publish_date, last_played_at, multiplayer = 'false', _authors = [])
     super(publish_date)
     @multiplayer = multiplayer
-    @last_played_at = DateTime.parse(last_played_at.to_s)
+    @last_played_at = Date.parse(last_played_at.to_s)
   end
 
   def add_author(author)
