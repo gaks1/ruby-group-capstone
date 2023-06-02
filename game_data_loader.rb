@@ -4,10 +4,10 @@ require_relative 'author'
 
 class DataLoader
   def self.load_games
-    games_data = JSON.parse(File.read('./data/games.json'), symbolize_names: true)
+    games_data = JSON.parse(File.read('./storage/games.json'), symbolize_names: true)
     games_data.map do |game_data|
       Game.new(
-        game_data[:publish_date],
+        Date.parse(game_data[:publish_date]),
         game_data[:last_played_at],
         game_data[:multiplayer]
       )
@@ -15,7 +15,7 @@ class DataLoader
   end
 
   def self.load_authors
-    authors_data = JSON.parse(File.read('./data/authors.json'), symbolize_names: true)
+    authors_data = JSON.parse(File.read('./storage/authors.json'), symbolize_names: true)
     authors_data.map do |author_data|
       Author.new(
         first_name: author_data[:first_name],
