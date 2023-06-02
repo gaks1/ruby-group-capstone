@@ -11,27 +11,28 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 Ruby Group Capstone ](#-ruby-group-capstone-)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [🚀 Live Demo ](#-live-demo-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 
 # 📖 Ruby Group Capstone <a name="about-project"></a>
 
-In this project, you will create a console app that will help you to keep a record of different types of things you own: books, music albums, movies, and games. Everything will be based on the UML class diagram presented below. The data will be stored in JSON files but you will also prepare a database with tables structure analogical to your program's class structure.
+In this project, you will create a console app that will help you to keep a record of different types of things you own: books, music albums, movies, and games. Everything will be based on the UML class diagram presented below. The data will be stored in JSON files but you will also prepare a database with tables structure analogical to your program's class structure.This is a [video](https://drive.google.com/file/d/1ICVraS1V_LkE0YBsInJQHYz4R20O-UCn/view?usp=sharing) description of this app.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -99,6 +100,17 @@ To run the project, execute the following command:
 👤 **Emmanuel Obi**
 
 - GitHub: [@githubhandle](https://github.com/Gmanlove)
+
+👤  Isaac Gakure Wanyoike
+
+ - GitHub: [@githubhandle](https://github.com/gaks1)
+ - Twitter: [@twitterhandle](https://twitter.com/bopplov)
+-  LinkedIn: [LinkedIn](https://www.linkedin.com/in/isaac-wanyoike-1841a8172/)
+
+👤  Gilbert Mutai
+ - GitHub: [@githubhandle](https://github.com/Mutai-Gilbert)
+ - LinkedIn: [@LinkedIn](https://www.linkedin.com/in/mutai-kipkoech/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

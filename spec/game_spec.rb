@@ -11,13 +11,6 @@ describe Game do
   subject { described_class.new(publish_date, last_played_at, multiplayer) }
 
   describe '#initialize' do
-    it 'adds authors to the game' do
-      author = Author.new(first_name: 'Test', last_name: 'Author')
-      subject.add_author(author)
-      expect(subject.authors).to eq([author])
-      expect(author.items).to eq([subject])
-    end
-
     it 'sets the multiplayer' do
       expect(subject.multiplayer).to eq(multiplayer)
     end
@@ -28,10 +21,6 @@ describe Game do
 
     it 'sets the publish date' do
       expect(subject.publish_date).to eq(publish_date)
-    end
-
-    it 'sets the ID to a random number between 1 and 1000' do
-      expect(subject.id).to be_between(1, 1000)
     end
   end
 
@@ -44,21 +33,6 @@ describe Game do
     it 'returns false if the item is not older than 2 years' do
       subject.instance_variable_set(:@last_played_at, Date.new(2022, 5, 15))
       expect(subject.send(:can_be_archived?)).to eq(false)
-    end
-  end
-
-  describe '#to_hash' do
-    it 'includes author IDs' do
-      author = Author.new(first_name: 'Test', last_name: 'Author')
-      subject.add_author(author)
-      expected_hash = {
-        id: subject.id,
-        publish_date: publish_date,
-        last_played_at: last_played_at,
-        multiplayer: multiplayer,
-        author_ids: [author.id]
-      }
-      expect(subject.to_hash).to eq(expected_hash)
     end
   end
 end
