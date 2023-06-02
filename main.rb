@@ -1,15 +1,15 @@
-# require_relative 'book_app'
-# require_relative 'music_album_app'
-# require_relative 'book_data_saver'
+require_relative 'book_app'
+require_relative 'music_album_app'
+require_relative 'book_data_saver'
 require_relative 'game_app'
 
 class Main
   def initialize
-    # @book_app = BookApp.new
-    # @music_app = MusicApp.new
+    @book_app = BookApp.new
+    @music_app = MusicApp.new
     @game_app = GameApp.new
   end
-
+  
   def display_menu
     puts 'Options:'
     puts '1. Create new book'
@@ -28,8 +28,11 @@ class Main
   end
 
   def save_session_and_exit
-    # DataSaver.save_book(@books)
-    # DataSaver.save_labels(@labels)
+    DataSaver.save_book(@books)
+    DataSaver.save_labels(@labels)
+    @book_app.book_save
+    @music_app.music_save
+    @game_app.save_session_and_exit
     puts 'saving'
   end
 
@@ -41,12 +44,15 @@ class Main
 
       if option == 13
         puts 'saving session'
-        @game_app.save_session_and_exit
+        save_session_and_exit
         puts 'exiting...'
         exit
-      elsif [1, 3, 4, 5, 7, 8, 10, 11, 12].include?(option)
-        # @book_app.send(options[option])
+      elsif [1, 3, 5, 7, 10, 12].include?(option)
+        @book_app.send(options[option.to_i])
+      elsif [4 ,8 , 11].include?(option)
         @game_app.send(options[option])
+      elsif [2, 6, 9].include?(option)
+        @music_app.send(options[option])
       else
         puts 'Invalid option'
       end
