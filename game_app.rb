@@ -1,8 +1,9 @@
 require_relative 'game'
 require_relative 'author'
-require_relative 'data_saver'
-require_relative 'data_loader'
+require_relative 'game_data_saver'
+require_relative 'game_data_loader'
 require 'json'
+require 'date'
 
 class GameApp
   def initialize
@@ -89,7 +90,7 @@ class GameApp
     last_name = gets.chomp
     author = Author.new(first_name: first_name, last_name: last_name)
 
-    game = Game.new(publish_date, last_played, multi)
+    game = Game.new(Date.parse(publish_date), last_played, multi)
     author.add_item(game)
     @authors << author
     @games << game
@@ -103,7 +104,7 @@ class GameApp
     else
       author = authors[author_index - 1]
 
-      game = Game.new(publish_date, last_played, multiplayer)
+      game = Game.new(Date.parse(publish_date), last_played, multiplayer)
       author.add_item(game)
 
       games << game

@@ -1,6 +1,5 @@
 require_relative 'book_app'
 require_relative 'music_album_app'
-require_relative 'book_data_saver'
 require_relative 'game_app'
 
 class Main
@@ -28,12 +27,9 @@ class Main
   end
 
   def save_session_and_exit
-    DataSaver.save_book(@books)
-    DataSaver.save_labels(@labels)
     @book_app.book_save
     @music_app.music_save
     @game_app.save_session_and_exit
-    puts 'saving'
   end
 
   def main(options)

@@ -14,7 +14,7 @@ class DataSaver
       }
     end
     json_games = JSON.generate(new_games)
-    File.write('./data/games.json', json_games)
+    File.write('./storage/games.json', json_games)
   end
 
   def self.save_authors(authors)
@@ -26,6 +26,6 @@ class DataSaver
       }
     end
     json_authors = JSON.generate(new_authors)
-    File.write('./data/authors.json', json_authors)
+    File.write('./storage/authors.json', json_authors)
   end
 end
