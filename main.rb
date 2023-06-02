@@ -9,7 +9,7 @@ class Main
     @music_app = MusicApp.new
     @game_app = GameApp.new
   end
-  
+
   def display_menu
     puts 'Options:'
     puts '1. Create new book'
@@ -49,7 +49,7 @@ class Main
         exit
       elsif [1, 3, 5, 7, 10, 12].include?(option)
         @book_app.send(options[option.to_i])
-      elsif [4 ,8 , 11].include?(option)
+      elsif [4, 8, 11].include?(option)
         @game_app.send(options[option])
       elsif [2, 6, 9].include?(option)
         @music_app.send(options[option])
