@@ -1,18 +1,31 @@
+require 'json'
+require_relative 'item'
+require_relative 'game'
+require_relative 'author'
+
 class DataSaver
-  @games = []
-  @authors = []
-
-  def self.save_data
-    data = {
-      games: @games.map(&:to_hash),
-      authors: @authors.map(&:to_hash)
-    }
-
-    File.write('./data/games.json', JSON.generate(data[:games]))
-    File.write('./data/authors.json', JSON.generate(data[:authors]))
+  def self.save_games(games)
+    new_games = games.each_with_index.map do |game, index|
+      {
+        id: index + 1,
+        publish_date: game.publish_date,
+        last_played_at: game.last_played_at,
+        multiplayer: game.multiplayer
+      }
+    end
+    json_games = JSON.generate(new_games)
+    File.write('./data/games.json', json_games)
   end
 
-  class << self
-    attr_writer :games, :authors
+  def self.save_authors(authors)
+    new_authors = authors.each_with_index.map do |author, index|
+      {
+        id: index + 1,
+        first_name: author.first_name,
+        last_name: author.last_name
+      }
+    end
+    json_authors = JSON.generate(new_authors)
+    File.write('./data/authors.json', json_authors)
   end
 end

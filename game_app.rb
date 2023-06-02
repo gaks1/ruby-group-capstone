@@ -6,8 +6,8 @@ require 'json'
 
 class GameApp
   def initialize
-    @authors = DataLoader.authors
-    @games = DataLoader.games
+    @authors = DataLoader.load_authors
+    @games = DataLoader.load_games
   end
 
   def list_authors
@@ -107,9 +107,8 @@ class GameApp
   end
 
   def save_session_and_exit
-    DataSaver.games = @games
-    DataSaver.authors = @authors
-    DataSaver.save_data
+    DataSaver.sav_games(games)
+    DataSaver.save_authors(authors)
     exit
   end
 

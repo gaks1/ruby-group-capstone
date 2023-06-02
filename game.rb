@@ -19,15 +19,4 @@ class Game < Item
   def can_be_archived?
     super && (DateTime.now.year - @last_played_at.year) > 2
   end
-
-  public
-
-  def to_hash
-    {
-      id: @id,
-      publish_date: @publish_date,
-      last_played_at: @last_played_at,
-      multiplayer: @multiplayer
-    }
-  end
 end
