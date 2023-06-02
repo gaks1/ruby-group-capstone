@@ -1,7 +1,10 @@
 require_relative 'game'
 require_relative 'author'
+require 'json'
 
 class GameApp
+  attr_reader :authors, :games
+
   def initialize
     @authors = []
     @games = []
@@ -36,7 +39,7 @@ class GameApp
       false
     else
       puts 'Invalid selection, please type either Y or N to proceed'
-      check_permission
+      check_multiplayer
     end
   end
 
@@ -46,10 +49,23 @@ class GameApp
     puts 'Last played date e.g dd/mm/yyyy: '
     last_played = gets.chomp.to_s
     multiplayer = check_multiplayer
-  
-    add_author(publish_date, multiplayer, last_played)
+
+    add_game(publish_date, multiplayer, last_played)
   end
-  
+
+  def add_game(publish_date, multiplayer, last_played)
+    if authors.empty?
+      puts 'No authors found. Please add an author first.'
+      add_author(publish_date, multiplayer, last_played)
+    else
+      display_authors
+      puts 'Press the number to select the author.'
+      sel_option = gets.chomp.to_i
+      create_game_with_author(sel_option, publish_date, multiplayer, last_played)
+    end
+    save_data
+  end
+
   def add_author(publish_date, multi, last_played)
     puts ''
     puts '.....................'
@@ -61,45 +77,53 @@ class GameApp
     puts 'Last Name: '
     last_name = gets.chomp
     author = Author.new(first_name: first_name, last_name: last_name)
-  
+
     game = Game.new(publish_date, last_played, multi)
-    game.add_author(author)
+    author.add_item(game)
+    @authors << author
     @games << game
     puts 'Added game successfully'
     puts 'Author added successfully'
   end
-  
 
-  def select_author_option(publish_date, multi, lastplayed)
-    puts '*Press* 1 to add new author for the game or *Press* 2 to select from list of authors'
-    author_option = gets.chomp.to_i
-    if author_option == 1
-      add_author(publish_date, multi, lastplayed)
-    elsif author_option == 2
-      display_authors
-      puts ''
-      puts 'Press the number to select the author.'
-      sel_option = gets.chomp.to_i
-      create_game(sel_option, publish_date, multi, lastplayed)
+  def create_game_with_author(author_index, publish_date, multiplayer, last_played)
+    if author_index < 1 || author_index > authors.length
+      puts 'Invalid author selection. Try again.'
     else
-      puts 'Invalid option selected, Try again'
-      select_author_option
-    end
-  end
+      author = authors[author_index - 1]
 
-  def add_game(publish_date, multi, lastplayed)
-    if @authors.empty?
-      puts ''
-      puts 'No authors found. Please add an author first.'
-      add_author(publish_date, multi, lastplayed)
-    else
-      select_author_option(publish_date, multi, lastplayed)
+      game = Game.new(publish_date, last_played, multiplayer)
+      author.add_item(game)
+
+      games << game
+
+      puts 'Added game successfully'
     end
   end
 
   def display_authors
-    @authors.each_with_index do |author, index|
+    authors.each_with_index do |author, index|
       puts "#{index + 1}. #{author.last_name} #{author.first_name}"
     end
+  end
+
+  def save_data
+    data = {
+      games: games.map(&:to_hash),
+      authors: authors.map(&:to_hash)
+    }
+
+    File.write('./data/games.json', JSON.generate(data[:games]))
+    File.write('./data/authors.json', JSON.generate(data[:authors]))
+  end
+
+  def load_data
+    return unless File.exist?('./data/games.json') && File.exist?('./data/authors.json')
+
+    games_data = JSON.parse(File.read('./data/games.json'), object_class: Game)
+    authors_data = JSON.parse(File.read('./data/authors.json'), object_class: Author)
+
+    @games = games_data
+    @authors = authors_data
   end
 end

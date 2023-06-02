@@ -3,7 +3,6 @@
 # require_relative 'book_data_saver'
 require_relative 'game_app'
 
-
 class Main
   def initialize
     # @book_app = BookApp.new
@@ -42,14 +41,12 @@ class Main
 
       if option == 13
         puts 'saving session'
-        save_session_and_exit()
+        save_session_and_exit
         puts 'exiting...'
         exit
-      elsif [1,3,4,5,7,8,10,11,12].include?(option)
+      elsif [1, 3, 4, 5, 7, 8, 10, 11, 12].include?(option)
         # @book_app.send(options[option])
         @game_app.send(options[option])
-      elsif [2,6,9]
-        # @music_app.send(options[option])
       else
         puts 'Invalid option'
       end
@@ -71,7 +68,7 @@ options = {
   9 => :list_genres,
   10 => :list_labels,
   11 => :list_authors,
-  12 => :list_sources,
+  12 => :list_sources
 }
 
 main = Main.new

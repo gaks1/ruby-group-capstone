@@ -4,11 +4,10 @@ require 'date'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(publish_date, last_played_at = Time.now.strftime('%d/%m/%Y'), multiplayer = 'false')
+  def initialize(publish_date, last_played_at = DateTime.now, multiplayer = 'false')
     super(publish_date)
     @multiplayer = multiplayer
-    @last_played_at = last_played_at
-    @archived = archived
+    @last_played_at = DateTime.parse(last_played_at.to_s)
   end
 
   def add_author(author)
@@ -18,6 +17,17 @@ class Game < Item
   private
 
   def can_be_archived?
-    super && (Date.today.year - Date.parse(@last_played_at).year) > 2
+    super && (DateTime.now.year - @last_played_at.year) > 2
+  end
+
+  public
+
+  def to_hash
+    {
+      id: @id,
+      last_played_at: @last_played_at,
+      publish_date: @publish_date,
+      multiplayer: @multiplayer
+    }
   end
 end
