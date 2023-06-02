@@ -2,9 +2,9 @@ require_relative 'item'
 require 'date'
 
 class Game < Item
-  attr_accessor :multiplayer, :last_played_at
+  attr_accessor :multiplayer, :last_played_at, :publish_date, :authors
 
-  def initialize(publish_date, last_played_at = DateTime.now, multiplayer = 'false')
+  def initialize(publish_date, last_played_at, multiplayer = 'false', _authors = [])
     super(publish_date)
     @multiplayer = multiplayer
     @last_played_at = DateTime.parse(last_played_at.to_s)
@@ -25,8 +25,8 @@ class Game < Item
   def to_hash
     {
       id: @id,
-      last_played_at: @last_played_at,
       publish_date: @publish_date,
+      last_played_at: @last_played_at,
       multiplayer: @multiplayer
     }
   end

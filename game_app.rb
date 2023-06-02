@@ -1,13 +1,13 @@
 require_relative 'game'
 require_relative 'author'
+require_relative 'data_saver'
+require_relative 'data_loader'
 require 'json'
 
 class GameApp
-  attr_reader :authors, :games
-
   def initialize
-    @authors = []
-    @games = []
+    @authors = DataLoader.authors
+    @games = DataLoader.games
   end
 
   def list_authors
@@ -54,7 +54,7 @@ class GameApp
   end
 
   def add_game(publish_date, multiplayer, last_played)
-    if authors.empty?
+    if @authors.empty?
       puts 'No authors found. Please add an author first.'
       add_author(publish_date, multiplayer, last_played)
     else
@@ -63,7 +63,6 @@ class GameApp
       sel_option = gets.chomp.to_i
       create_game_with_author(sel_option, publish_date, multiplayer, last_played)
     end
-    save_data
   end
 
   def add_author(publish_date, multi, last_played)
@@ -107,23 +106,14 @@ class GameApp
     end
   end
 
-  def save_data
-    data = {
-      games: games.map(&:to_hash),
-      authors: authors.map(&:to_hash)
-    }
-
-    File.write('./data/games.json', JSON.generate(data[:games]))
-    File.write('./data/authors.json', JSON.generate(data[:authors]))
+  def save_session_and_exit
+    DataSaver.games = @games
+    DataSaver.authors = @authors
+    DataSaver.save_data
+    exit
   end
 
-  def load_data
-    return unless File.exist?('./data/games.json') && File.exist?('./data/authors.json')
+  private
 
-    games_data = JSON.parse(File.read('./data/games.json'), object_class: Game)
-    authors_data = JSON.parse(File.read('./data/authors.json'), object_class: Author)
-
-    @games = games_data
-    @authors = authors_data
-  end
+  attr_reader :games, :authors
 end
