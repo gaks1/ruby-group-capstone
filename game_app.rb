@@ -47,37 +47,28 @@ class GameApp
     last_played = gets.chomp.to_s
     multiplayer = check_multiplayer
   
-    puts 'Enter author details:'
-    puts 'First Name: '
-    first_name = gets.chomp
-    puts 'Last Name: '
-    last_name = gets.chomp
-    game = Game.new(publish_date, last_played, multiplayer)
-    game.add_author(Author.new(first_name, last_name))
-    @games << game
-    puts 'Added game successfully'
-  end  
+    add_author(publish_date, multiplayer, last_played)
+  end
   
-  
-
-  def add_author(publish_date, multi, lastplayed)
+  def add_author(publish_date, multi, last_played)
     puts ''
     puts '.....................'
     puts 'Enter author details'
     puts '.....................'
     puts ''
     puts 'First Name: '
-    firstname = gets.chomp
+    first_name = gets.chomp
     puts 'Last Name: '
-    lastname = gets.chomp
-    author = Author.new(first_name: firstname, last_name: lastname)
-    game = Game.new(publish_date, lastplayed, multi)
-    @games << game
+    last_name = gets.chomp
+    author = Author.new(first_name: first_name, last_name: last_name)
+  
+    game = Game.new(publish_date, last_played, multi)
     game.add_author(author)
-    @authors << author
-    puts '====================='
+    @games << game
+    puts 'Added game successfully'
     puts 'Author added successfully'
   end
+  
 
   def select_author_option(publish_date, multi, lastplayed)
     puts '*Press* 1 to add new author for the game or *Press* 2 to select from list of authors'
