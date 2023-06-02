@@ -1,13 +1,18 @@
-require './item'
+require_relative 'item'
 require 'date'
 
 class Game < Item
-  attr_accessor :platform, :last_played_at
+  attr_accessor :multiplayer, :last_played_at
 
-  def initialize(publish_date, last_played_at = Time.now.strftime('%d/%m/%Y'), platform = 'false', archived = 'false')
-    super(publish_date, archived: archived)
-    @platform = platform
+  def initialize(publish_date, last_played_at = Time.now.strftime('%d/%m/%Y'), multiplayer = 'false')
+    super(publish_date)
+    @multiplayer = multiplayer
     @last_played_at = last_played_at
+    @archived = archived
+  end
+
+  def add_author(author)
+    @author = author
   end
 
   private
