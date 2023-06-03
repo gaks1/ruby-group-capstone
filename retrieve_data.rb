@@ -1,7 +1,7 @@
 require 'json'
 
 def retrieve_albums
-  return [] unless File.exists?('./storage/albums.json')
+  return [] unless File.exist?('./storage/albums.json')
 
   data = JSON.parse(File.read('./storage/albums.json'))
   music_albums = []
@@ -12,7 +12,7 @@ def retrieve_albums
 end
 
 def retrieve_genres
-  return [] unless File.exists?('./storage/genre.json')
+  return [] unless File.exist?('./storage/genre.json')
 
   data = JSON.parse(File.read('./storage/genre.json'))
   genres = []
