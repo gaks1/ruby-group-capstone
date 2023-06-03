@@ -1,6 +1,8 @@
 require 'json'
 
 def retrieve_albums
+  return [] unless File.exist?('./storage/albums.json')
+
   data = JSON.parse(File.read('./storage/albums.json'))
   music_albums = []
   data.each do |album|
@@ -10,6 +12,8 @@ def retrieve_albums
 end
 
 def retrieve_genres
+  return [] unless File.exist?('./storage/genre.json')
+
   data = JSON.parse(File.read('./storage/genre.json'))
   genres = []
   data.each do |genre|
