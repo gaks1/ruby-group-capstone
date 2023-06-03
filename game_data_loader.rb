@@ -6,7 +6,6 @@ class DataLoader
   def self.load_games
     return [] unless File.exist?('./storage/games.json')
 
-
     games_data = JSON.parse(File.read('./storage/games.json'), symbolize_names: true)
     games_data.map do |game_data|
       Game.new(
